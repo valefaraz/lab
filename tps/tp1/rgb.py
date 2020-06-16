@@ -111,7 +111,7 @@ if __name__ == "__main__":
    
     parser = argparse.ArgumentParser(usage="./procesador.py [-h] [-r RED] [-g GREEN] [-b BLUE] -s SIZE -f FILE", description="Filtro de imagen")
     parser.add_argument("-f", "--file", type=str, required=True, help="Archivo a procesar .ppm")
-    parser.add_argument("-s", "--size", type=int, default=1024, help="Bloque de lectura")
+    parser.add_argument("-s", "--size", type=int, required=True, help="Bloque de lectura")
     parser.add_argument("-b", "--blue", type=float, default=1, help="Escala para azul")
     parser.add_argument("-g", "--green", type=float, default=1, help=" Escala para verde")
     parser.add_argument("-r", "--red", type=float, default=1, help="Escala para rojo")
