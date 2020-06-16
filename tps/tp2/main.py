@@ -7,7 +7,6 @@ import sys
 import threading
 import array
 barrera = threading.Barrier(3)
-candado = threading.Lock()
 body_list = []
 from eleminar import eliminar_comentarios
 from separar import separar
@@ -31,7 +30,6 @@ def modificar_rojo(b_mensaje):
 
     for b in range(inicio,fin,step):
         
-        candado.acquire()
         z=0
         
         #print("rojo:",b)
@@ -55,7 +53,6 @@ def modificar_rojo(b_mensaje):
             z=1
             body_list[b] = body_list[b] - 1
         
-        candado.release()
 
         #print("new valor:",body_list[b])
         #print("----------------")
@@ -89,7 +86,7 @@ def modificar_verde(b_mensaje):
         fin = fin - step
     
     for b in range(inicio,fin,step):
-        candado.acquire()
+
         z=0
         
         #print("verde:",b)
@@ -113,7 +110,6 @@ def modificar_verde(b_mensaje):
             z=1
             body_list[b] = body_list[b] - 1
         
-        candado.release()
         
         #print("new valor:",body_list[b])
         #print("----------------")
@@ -143,7 +139,6 @@ def modificar_azul(b_mensaje):
         fin = fin - step
 
     for b in range(inicio,fin,step):
-        candado.acquire()
         z=0
         
         #print("azul:",b)
@@ -167,11 +162,9 @@ def modificar_azul(b_mensaje):
             z=1
             body_list[b] = body_list[b] - 1
 
-        candado.release()
-        
         #print("new valor:",body_list[b])
         #print("----------------")
-        
+
         a = a+3
     
     barrera.wait()
